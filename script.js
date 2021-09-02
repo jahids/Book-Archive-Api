@@ -31,7 +31,7 @@ const searchBook = ()=>{
         errorMassage.classList.remove('d-none')
           errorMassage.textContent = ""
         errorMassage.innerHTML = `
-        <h1> ${searchText} this book not Found</h1>
+        <h1> ${inputFieldText} this book not Found</h1>
         `
     }
     else{
