@@ -1,41 +1,41 @@
 const searchBook = ()=>{
     const inputField = document.getElementById("inputField");
   
-    let searchText = inputField.value;
+    let inputFieldText = inputField.value;
     document.getElementById("inputField").value = "";
    
     const errorMassage = document.getElementById("error-massage")
-    const info = document.getElementById('info')
+    const showBook = document.getElementById('showBook')
     errorMassage.classList.add('d-none')
     errorMassage.textContent = ""
     let cardContainer = document.getElementById('card-container');
     document.getElementById('spinner').classList.remove('d-none')
-    const url = `https://openlibrary.org/search.json?q=${searchText}`
+    const url = `https://openlibrary.org/search.json?q=${inputFieldText}`
     fetch(url)
     .then(res=>res.json())
     .then(data=>{
       console.log(data.numFound)
-      if(searchText==''){
+      if(inputFieldText ==''){
         document.getElementById('spinner').classList.add('d-none') 
-        info.classList.add('d-none')
+        showBook.classList.add('d-none')
         cardContainer.classList.add('d-none')
         errorMassage.classList.remove('d-none')
         errorMassage.innerHTML = `
-        <h1>Please Search any Book Name in Search Field</h1>
+        <h1>Please Search another Book Name </h1>
         `
       }
       else if(data.numFound ===0){
         document.getElementById('spinner').classList.add('d-none') 
-        info.classList.add('d-none')
+        showBook.classList.add('d-none')
         cardContainer.classList.add('d-none')
         errorMassage.classList.remove('d-none')
           errorMassage.textContent = ""
         errorMassage.innerHTML = `
-        <h1> ${searchText} is not Found</h1>
+        <h1> ${searchText} this book not Found</h1>
         `
     }
     else{
-      info.classList.remove("d-none")
+      showBook.classList.remove("d-none")
       cardContainer.classList.remove('d-none')
       errorMassage.classList.add ('d-none')
       document.getElementById('spinner').classList.add('d-none') 
@@ -47,9 +47,8 @@ const searchBook = ()=>{
 let showData = (data)=>{
   
     console.log(data.docs)
-    // const info = document.getElementById('info')
-    // info.classList.remove("d-none")
-    info.innerHTML = `
+
+    showBook.innerHTML = `
     <h1>${data.numFound} books are found</h1>
     `
     let cardContainer = document.getElementById('card-container')
