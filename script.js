@@ -56,8 +56,11 @@ let showData = (data)=>{
     cardContainer.textContent = ""
     data.docs.forEach(doc=>{
         // console.log(doc)
-        let key = doc.cover_i
-        if(key !==undefined){
+      if (doc.publisher) {
+        var publisherN = doc.publisher[0];
+      }
+      let key = doc.cover_i;
+        if(key !== undefined){
           // let alternative  =`https://bitsofco.de/content/images/2018/12/broken-1.png`
         let pics = `https://covers.openlibrary.org/b/id/${key}-M.jpg`
         // let subject = doc.subject
@@ -70,7 +73,8 @@ let showData = (data)=>{
         <div class="card-body">
           <h5 class="card-title">${title}</h5>
           <p class="card-text">author :${doc.author_name}</p>
-          <p>First Publish:${doc.first_publish_year}</p>
+          <p> First Publish:${doc.first_publish_year}</p>
+          <p> publisher:${publisherN}</p>
         </div>
         <button class="btn btn-primary w-100">Add To Cart</button>
       </div>
